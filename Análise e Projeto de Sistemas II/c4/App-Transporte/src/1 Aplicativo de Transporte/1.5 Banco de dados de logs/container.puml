@@ -1,0 +1,15 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+System_Ext(api, "API","Fornece as funcionalidades de ofertar serviços de transporte de passageiros e encomendas (por parte dos prestadores de serviço) e de solicitar esses serviços(cliente)." )
+
+Container_Boundary(BDDL, "Banco de dados de Logs") {
+    Component(audit, "Auditoria","Tabelas",  "Armazena dados da auditoria")
+    Component(tec, "Aspectos técnicos de desenvolvimento","Tabelas",  "Armazena dados do desenvolvimento da aplicação, Versões, implementação de novas funções e etc.")
+}
+
+Rel(api, BDDL, "Salva e Busca dados")
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+System_Ext(api, "Api da Aplicação", "Fornece as funcionalidades de ofertar serviços de transporte de passageiros e encomendas (por parte dos prestadores de serviço) e de solicitar esses serviços(clientes).")
+
+
+System_Boundary(appTransporte, "Aplicativo de transporte") {
+    Container(de, "Dados das Entregas","Tabelas", "Armazena os dados das entregas")
+    Container(pg, "Pagamentos","Tabelas", "Armazena os pagamentos")
+    Container(rt, "Dados das Rotas","Tabelas", "Informa os dados das Rotas")
+    Container(cl, "Clientes","Tabelas","Informa os clientes")
+}
+
+Rel(api,appTransporte, "Salva e Busca os dados")
+
+@enduml

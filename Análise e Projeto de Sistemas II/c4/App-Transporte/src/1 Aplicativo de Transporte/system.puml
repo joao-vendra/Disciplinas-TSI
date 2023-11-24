@@ -1,0 +1,39 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(cliente, "Cliente", "Um cliente cadastrado no aplicativo.")
+Person(prestador, "Prestador Serviço", "Motorista cadastrado no aplicativo que possua veículo próprio (carro ou motocicleta).")
+Person(empresa, "Empresa", "Funcionários da empresa.")
+
+System_Ext(APIWSDenatran, "Api WSDenatran", "Possui os dados sobre a CNH de cidadãos brasileiros.")
+System_Ext(banco, "Serviço financeiro", "Processa os recebimentos dos Clientes e os pagamentos para os Prestadores.")
+System_Ext(email, "Sistema de E-mail", "Processa o envio de e-mails para Clientes e Prestadores de serviço.")
+
+System_Boundary(appTransporte, "Aplicativo de transporte") {
+    Container(app, "Aplicativo Mobile Android","React-Native",  "Permite que os usuários finais (Clientes e Prestadores de Serviço), acessem  as funções da plataforma.")
+    Container(web, "Pagina web","React", "Página de acesso para a adminsitração do sistema pela empresa.")
+    Container(api,"API da aplicação", "Java", "Fornece as funcionalidades de ofertar serviços de transporte de passageiros e encomendas (por parte dos prestadores de serviço) e de solicitar esses serviços(clientes).")
+    Container(db, "Banco de dados Aplicação","Postgres", "Armazena os dados relativos a aplicação")
+    Container(dbLogs, "Banco de dados Logs", "Postgres", "Armazena dados de auditoria e relacionados à aspectos técnicos de desenvolvimento da aplicação.")
+
+    Rel(app, api, "Request HTTP")
+    Rel(web, api, "Request HTTP")
+    Rel(api, db, "Lê e Escreve",  "JDBC")
+    Rel(api, dbLogs, "Lê e Escreve", "JDBC")
+}
+
+Rel(cliente, app, "Usa")
+Rel(prestador, app, "Usa")
+Rel(empresa, web, "Usa")
+Rel(api, APIWSDenatran, "Busca dados")
+Rel(api, banco, "Gerencia pagamentos")
+Rel(cliente, banco, "Faz pagamento")
+Rel(banco, prestador, "Envia valor financeiro")
+Rel(api, email, "Requisita envio")
+Rel(email, cliente, "SMTP", "Envia E-mail")
+Rel(email, prestador, "SMTP", "Envia E-mail")
+
+
+@enduml

@@ -1,0 +1,14 @@
+# 1.2 App Mobile
+
+![diagram](https://www.plantuml.com/plantuml/svg/0/ZPJ1SXCn38RlUGgnfsHccrnwujGG2cqdRJCb6OPJHlKggHclPIGx330y3OUUE34yGLwCyMQJ9fqMEArNbkLVdooTQ4I9gNQT5zORbog2knY3lXmC13_tbpRUfTka98Pz91_xXki1LcBHhrmAQJ0wFfeuz75sEHuuZAHnC3gUZxWExBD_oB4xu-67wzbq_lvyUZOVdxuzlNhTxNKw4n9btpNEaezKGZ7Qh8eIYbaDhHqCLgXHi6Bm31YSDHZjYlj5RniY26d4YgM4Oh9TmpkIbLtVSuvtoP75QiHdmy6dH11ODI6iQFtJ9CSGPFqhY6Ne6XHXu0GrHpRME8hOon8w8_OHhIUPl-BaAvGltPflhSiP3KE0o-Qdw7th003iq7GTBwqlePYIGwW8nla_QxqXD16kigg6nQ53xr6O9GbvOt6NDsbxHlEXFVDpiHk_Ss-DHO4ew3Mmv8Aih2PqzYiA19A5rH8gyYdVfYNK612iZoGRVWIn5MhOB-mo2Qxlrxz9eSgSG_zPwMtT3tHlRNy3ekoiiV50DHYk7qlxLoQEFxQwwo2RbL1b8oi45DoBhh18CGbhkKisu19hyl7_03G4RiXjg_y4Wg4XLMnXFU5wMEYTz_UzbzZ5OCjYE3c72jidlhvV_sWwuG9NcBzlM3mP0imvUMFPexCLLjJWvmL91gjj3pN6FSfDuggu92kiG43US4s-GeLkOCdWibj6-A2tALeRiGTqM4DI9NsuS3iNTDDb6SIshN9sK8ouJjuQFDBcKPnDfvF1nRlhgwBNEE_6oguPPmsdlBStBnxjTax8Ltbc_G40)
+
+**Nível 3: Diagrama de Componentes**
+
+Esse container é responsavel pelas interações dos usuários-clientes e prestadores de serviços da empresa.
+
+**Escope**: App Mobile.
+
+**Primary elements**: Tela de Login, Telas de prestadores e Telas de Clientes. 
+Elementos de Suporte : Api da aplicação.
+
+**Público Alvo**: Desenvolvedores e Arquitetos de Software.

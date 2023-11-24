@@ -1,0 +1,23 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(cliente, "Cliente", "Um cliente cadastrado no aplicativo.")
+Person(prestador, "Prestador Serviço", "Motorista cadastrado no aplicativo que possua veículo próprio (carro ou motocicleta).")
+Person(empresa, "Empresa", "Funcionários da empresa.")
+System(app, "Aplicativo de transporte", "Permite que clientes encontrem motoristas dispostos a transportar passageiros ou fazer entregas de encomendas.")
+System_Ext(APIWSDenatran, "Api WSDenatran", "Possui os dados sobre a CNH de cidadãos brasileiros.")
+System_Ext(banco, "Serviço financeiro", "Processa os recebimentos dos Clientes e os pagamentos para os Prestadores.")
+System_Ext(email, "Sistema de E-mail", "Processa o envio de e-mails para Clientes e Prestadores de serviço.")
+
+Rel(empresa, app, "Gerencia operações")
+Rel(cliente, app, "Solicita pelo")
+Rel(prestador, app, "Escolhe serviço no")
+Rel(app, APIWSDenatran, "Consulta")
+Rel(app, banco, "Usa")
+Rel(app, email, "Envia e-mail")
+Rel(email, cliente, "Envia e-mail para")
+Rel(email, prestador, "Envia e-mail para")
+
+@enduml

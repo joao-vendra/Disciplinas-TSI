@@ -1,0 +1,17 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Container_Boundary(web, "Página Web"){
+    Component(login, "Página de Login", "HTML + CSS + JS", "Página de Login")
+    Component(gerenciaPrestadores, "Página de Prestadores", "HTML + CSS + JS", "Gerencia Aprovação, Exclusão e Banimento de prestadores")
+    Component(gerenciaClientes, "Paǵina de Clientes", "HTML + CSS + JS", "Gerencia Aprovação, Exclusão e Banimento de clientes")
+    Component(gestao,"Página de gestão", "HTML + CSS + JS", "Informações e Estatisticas sobre o négocio, como números de clientes, número de prestadores de serviço, graficos de rendimentos ao longo do tempo.")
+    Component(util, "Página de Configurações", "HTML + CSS + JS", "Página para gerenciar as configurações gerais do sistema, como valor cobrado dos clientes, percentual de retenção pela empresa e etc.")
+}
+
+Container(api,"API da aplicação", "Java", "Fornece as funcionalidades de ofertar serviços de transporte de passageiros e encomendas (por parte dos prestadores de serviço) e de solicitar esses serviços(clientes).")
+
+Rel(web, api, "Usa", "HTTP/JSON")
+@enduml

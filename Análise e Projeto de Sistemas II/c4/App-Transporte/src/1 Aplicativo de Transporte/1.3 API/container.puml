@@ -1,0 +1,38 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Container(app, "Aplicativo Mobile Android","React-Native",  "Permite que os usuários finais (Clientes e Prestadores de Serviço), acessem  as funções da plataforma.")
+Container(web, "Pagina web","React", "Página de acesso para a adminsitração do sistema pela empresa.")
+Container(db, "Banco de dados Aplicação","Postgres", "Armazena os dados relativos a aplicação")
+Container(dbLogs, "Banco de dados Logs", "Postgres", "Armazena dados de auditoria e relacionados à aspectos técnicos de desenvolvimento da aplicação.")
+
+System_Ext(APIWSDenatran, "Api WSDenatran", "Possui os dados sobre a CNH de cidadãos brasileiros.")
+System_Ext(banco, "Serviço financeiro", "Processa os recebimentos dos Clientes e os pagamentos para os Prestadores.")
+System_Ext(email, "Sistema de E-mail", "Processa o envio de e-mails para Clientes e Prestadores de serviço.")
+
+Container_Boundary(api, "API Aplicação"){
+    Component(sign, "Sign In Controller", "Java" , "Recebe e aprova requisicoes de acesso")
+    Component(envio, "Envio dados", "Java", "devolve dados requeisitados")
+    Component(recebe, "Recebe dados", "Java", "Recebe dados")
+    Component(salva, "Conexão DB", "Java", " Conecta com o banco de dados")
+    Component(logica, "Lógica", "Java", "Manipula os dados")
+
+    Rel(app, sign, "Login")
+    Rel(web, sign, "Login")
+    Rel(salva, db, "Salva e recebe dados")
+    Rel(salva, dbLogs, "Salva e Recebe dados")
+    Rel(sign, logica, "")
+    Rel(logica, envio, "")
+    Rel(envio, APIWSDenatran, "Envia")
+    Rel(envio, banco, "Envia")
+    Rel(envio, email, "Envia")
+    Rel(APIWSDenatran, recebe, "Recebe")
+    Rel(banco, recebe, "Recebe")
+    Rel(email, recebe, "Recebe")
+    Rel(recebe, logica, "Transforma")
+    Rel(logica, salva, "Persiste dados")
+}
+
+@enduml

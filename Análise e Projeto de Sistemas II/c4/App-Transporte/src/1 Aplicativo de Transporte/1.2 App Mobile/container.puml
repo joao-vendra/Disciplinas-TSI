@@ -1,0 +1,24 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(cliente, "Cliente", "Um cliente cadastrado no aplicativo.")
+Person(prestador, "Prestador Serviço", "Motorista cadastrado no aplicativo que possua veículo próprio (carro ou motocicleta).")
+
+Container_Boundary(mobile, "App Mobile"){
+    Component(login, "Tela de Login", "React Native", "Tela de Login")
+    Component(gerenciaPrestadores, "Telas de Prestadores", "React Native", "Telas de Iniciar transporte, visualizar perfis, denuncias, mapa interativo e tela de configurações do app.")
+    Component(gerenciaClientes, "Telas de Clientes", "React Native", "Tela de solicitar transporte com mapa interativo, visualizar perfis, denuncias, loja de compra de creditos para transportes futuros, tela de pagamento e tela de configurações do app.")
+
+    Rel(login, gerenciaClientes, "Acessa")
+    Rel(login, gerenciaPrestadores, "Acessa")
+}
+
+Container(api,"API da aplicação", "Java", "Fornece as funcionalidades de ofertar serviços de transporte de passageiros e encomendas (por parte dos prestadores de serviço) e de solicitar esses serviços(clientes).")
+
+Rel(mobile, api, "Comunica-se", "HTTP/JSON")
+Rel(cliente, mobile, "Usa")
+Rel(prestador, mobile, "Usa")
+
+@enduml
